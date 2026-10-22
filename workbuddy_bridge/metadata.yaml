@@ -1,0 +1,4 @@
+name: workbuddy_bridge
+desc: 把 QQ 消息转交给本机 WorkBuddy Gateway，由 WorkBuddy 自带的模型作答
+author: WorkBuddy
+version: 1.1.0

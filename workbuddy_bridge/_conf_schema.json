@@ -1,0 +1,262 @@
+{
+  "max_reply_chars": {
+    "description": "回复长度上限（字）：超出会自动按句子/段落边界裁剪",
+    "type": "int",
+    "default": 1500
+  },
+  "others_max_chars": {
+    "description": "非管理员的回复长度上限（字）",
+    "type": "int",
+    "default": 1500
+  },
+  "idle_chat_enabled": {
+    "description": "适时闲聊：群冷场时主动开口（总开关）",
+    "type": "bool",
+    "default": true
+  },
+  "idle_chat_all_groups": {
+    "description": "适时闲聊：对所有群生效（关掉后只对下面的白名单群生效）",
+    "type": "bool",
+    "default": true
+  },
+  "idle_chat_groups": {
+    "description": "适时闲聊：白名单群号，英文逗号分隔（仅当上一项关闭时生效。默认所有群都开，一般不用改）",
+    "type": "string",
+    "default": ""
+  },
+  "idle_hifreq_groups": {
+    "description": "高頻闲聊群：这些群冷场判定与冷却都更短（更活跃）。留空=跟着群梗规则开的群走",
+    "type": "string",
+    "default": ""
+  },
+  "idle_hifreq_trigger_sec": {
+    "description": "高频群：安静多少秒算冷场（普通群用上面那个值）",
+    "type": "int",
+    "default": 120
+  },
+  "idle_hifreq_cooldown_sec": {
+    "description": "高频群：两次开口的最小间隔（秒，普通群用上面那个值）",
+    "type": "int",
+    "default": 600
+  },
+  "idle_chat_blacklist": {
+    "description": "闭嘴黑名单：这里的群彻底不主动开口（冷场/跟随/关键词冒泡三条全禁），优先级高于上面所有项",
+    "type": "string",
+    "default": ""
+  },
+  "follow_groups": {
+    "description": "跟随模式：生效的群号，英文逗号分隔。留空=跟着群梗规则开的群走（与关键词冒泡同口径）",
+    "type": "string",
+    "default": ""
+  },
+  "follow_max_chain": {
+    "description": "跟随连击上限：一波话题最多跟这么多次，之后必须冷场重置或被@才恢复（0=不限制）",
+    "type": "int",
+    "default": 2
+  },
+  "follow_chain_cooldown_sec": {
+    "description": "跟满上限后，冷却这么久才重新允许跟随（秒）",
+    "type": "int",
+    "default": 900
+  },
+  "follow_hifreq_max_chain": {
+    "description": "高频群（梗群）的跟随连击上限：一波话题最多跟几次",
+    "type": "int",
+    "default": 2
+  },
+  "follow_hifreq_chain_cooldown_sec": {
+    "description": "高频群的跟随连击冷却（秒）",
+    "type": "int",
+    "default": 900
+  },
+  "follow_hifreq_window_sec": {
+    "description": "高频群的跟随热窗口（秒）：话题在这之内就继续跟，普通群用 180",
+    "type": "int",
+    "default": 150
+  },
+  "follow_min_gap_sec": {
+    "description": "两次跟随之间的最小间隔（秒）：调大就不会逐句接话（0=不限制）",
+    "type": "int",
+    "default": 240
+  },
+  "follow_hifreq_min_gap_sec": {
+    "description": "高频群（梗群）的跟随最小间隔（秒），留空走上一项的值",
+    "type": "int",
+    "default": 240
+  },
+  "idle_chat_trigger_sec": {
+    "description": "适时闲聊：群安静多少秒后触发",
+    "type": "int",
+    "default": 300
+  },
+  "idle_chat_history_size": {
+    "description": "适时闲聊：取材用的最近消息条数",
+    "type": "int",
+    "default": 15
+  },
+  "idle_chat_cooldown_sec": {
+    "description": "适时闲聊：同一群两次开口的最小间隔（秒）",
+    "type": "int",
+    "default": 1800
+  },
+  "idle_global_gap_sec": {
+    "description": "适时闲聊：两次开口的全局间隔（秒，不分群），防止多群同时开腔显得像串台",
+    "type": "int",
+    "default": 180
+  },
+  "idle_source_ttl": {
+    "description": "适时闲聊：只使用这么久以内的消息作素材（秒），避免接上早就凉透的话题",
+    "type": "int",
+    "default": 1800
+  },
+  "idle_live_history": {
+    "description": "适时闲聊：冷场触发时现拉群最近消息作素材（关掉则只用平时缓存的流水账）",
+    "type": "bool",
+    "default": true
+  },
+  "poke_enabled": {
+    "description": "戳一戳：是否响应（被戳时随机回怼一句）",
+    "type": "bool",
+    "default": true
+  },
+  "group_require_at": {
+    "description": "群里是否必须 @ 机器人才响应（关掉则群里任何消息都答）",
+    "type": "bool",
+    "default": true
+  },
+  "silent_for_others": {
+    "description": "白名单模式：开启后只有 ALLOWED_SENDERS 里的人能触发（关掉则所有人可对话）",
+    "type": "bool",
+    "default": false
+  },
+  "roleplay_enabled": {
+    "description": "角色扮演：是否允许（总开关）",
+    "type": "bool",
+    "default": true
+  },
+  "roleplay_open_to_all": {
+    "description": "角色扮演：对所有群友开放（关掉后只允许下方白名单，且管理员随时可用）",
+    "type": "bool",
+    "default": true
+  },
+  "roleplay_allowed": {
+    "description": "角色扮演：白名单 QQ 号，英文逗号分隔（仅当上一项关闭时生效）",
+    "type": "string",
+    "default": ""
+  },
+  "roleplay_timeout_sec": {
+    "description": "角色扮演：多久没人接着聊就自动退场（秒）",
+    "type": "int",
+    "default": 900
+  },
+  "relay_back_output": {
+    "description": "审批产出回传：任务完成后把新文件发回提出需求的群",
+    "type": "bool",
+    "default": true
+  },
+  "relay_output_max_files": {
+    "description": "审批产出回传：最多回传几个文件",
+    "type": "int",
+    "default": 5
+  },
+  "relay_output_max_mb": {
+    "description": "审批产出回传：单个文件超过多少 MB 就不发",
+    "type": "int",
+    "default": 50
+  },
+  "hot_reload_enabled": {
+    "description": "热重载：改完插件代码保存后自动生效（不用重启 AstrBot）",
+    "type": "bool",
+    "default": true
+  },
+  "keyword_bubble_enabled": {
+    "description": "关键词冒泡：群里聊到话题关键词时，没人@也能凑一句（总开关）",
+    "type": "bool",
+    "default": true
+  },
+  "keyword_bubble_groups": {
+    "description": "关键词冒泡：生效的群号，英文逗号分隔。留空=跟着群梗规则开的群走",
+    "type": "string",
+    "default": ""
+  },
+  "keyword_bubble_words": {
+    "description": "关键词冒泡：触发词，英文逗号分隔。出现即算，不要求开头",
+    "type": "string",
+    "default": "有没有人,有人在吗,求助,求问,求解,请教,有人懂,有人知道,谁知道,什么意思,什么梗,这梗,这个梗,求解答,在线吗"
+  },
+  "keyword_bubble_cooldown_sec": {
+    "description": "关键词冒泡：同一群两次冒泡的最小间隔（秒），太密会变关键词播报机",
+    "type": "int",
+    "default": 600
+  },
+  "keyword_bubble_global_gap_sec": {
+    "description": "关键词冒泡：两次冒泡的全局间隔（秒，不分群），防止多群同时开腔像串台",
+    "type": "int",
+    "default": 60
+  },
+  "keyword_bubble_max_per_day": {
+    "description": "关键词冒泡：每群每天最多几次（0=不限制）。这条路径没人@就说话，没上限容易超预期",
+    "type": "int",
+    "default": 20
+  },
+  "keyword_bubble_min_source_lines": {
+    "description": "关键词冒泡：素材少于这么多条就不插嘴",
+    "type": "int",
+    "default": 2
+  },
+  "image_gen_enabled": {
+    "description": "生图：总开关（群里说「画一张xxx」时调即梦出图）",
+    "type": "bool",
+    "default": true
+  },
+  "image_gen_admin_only": {
+    "description": "生图：仅管理员可用（当前已关闭 = 所有群友都能用，会消耗即梦额度）",
+    "type": "bool",
+    "default": false
+  },
+  "image_gen_bin": {
+    "description": "生图：即梦 CLI 可执行文件路径（留空用代码默认）",
+    "type": "string",
+    "default": ""
+  },
+  "image_gen_dir": {
+    "description": "生图：出图保存目录（留空用代码默认）",
+    "type": "string",
+    "default": ""
+  },
+  "image_gen_model": {
+    "description": "生图：模型版本（免费档：5.0lite / 4.6 / 4.0）",
+    "type": "string",
+    "default": "5.0lite"
+  },
+  "image_gen_ratio": {
+    "description": "生图：默认画面比例（1:1 / 3:4 / 4:3 / 16:9 / 9:16）。消息里写「比例16:9」会覆盖此项",
+    "type": "string",
+    "default": "16:9"
+  },
+  "image_gen_resolution": {
+    "description": "生图：分辨率档位（2k / 4k）",
+    "type": "string",
+    "default": "2k"
+  },
+  "image_gen_timeout": {
+    "description": "生图：单次生成超时（秒）",
+    "type": "int",
+    "default": 180
+  },
+  "image_gen_cooldown_sec": {
+    "description": "生图：同一群两次生成的最小间隔（秒，2026-10-19 起默认 5）",
+    "type": "int",
+    "default": 5
+  },
+  "image_gen_global_gap_sec": {
+    "description": "生图：全局间隔（秒，不分群），防止多群同时排队挤爆 CLI（2026-10-19 起默认 5）",
+    "type": "int",
+    "default": 5
+  },
+  "image_gen_max_per_day": {
+    "description": "生图：每群每天上限（0=不限；当前模型为免费档，默认不限）",
+    "type": "int",
+    "default": 0
+  }
+}
