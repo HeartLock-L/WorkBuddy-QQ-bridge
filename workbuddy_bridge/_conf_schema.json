@@ -240,7 +240,7 @@
     "default": "2k"
   },
   "image_gen_timeout": {
-    "description": "生图：单次生成超时（秒）",
+    "description": "生图：生成总超时（秒，含会话准备、提交、查询和下载；重载不重新计时）",
     "type": "int",
     "default": 180
   },
@@ -258,5 +258,55 @@
     "description": "生图：每群每天上限（0=不限；当前模型为免费档，默认不限）",
     "type": "int",
     "default": 0
+  },
+  "web_search_enabled": {
+    "description": "联网：问到实时信息时先自搜（必应公开结果，不开放任何工具权限）",
+    "type": "bool",
+    "default": true
+  },
+  "question_queue_limit": {
+    "description": "问答：最多等待人数（不含正在处理的一条，0 表示忙时直接拒绝；范围 0–50）",
+    "type": "int",
+    "default": 5
+  },
+  "question_queue_wait_sec": {
+    "description": "问答：等待上限（秒，含等待上一轮结束；范围 1–300，修改后重载生效）",
+    "type": "int",
+    "default": 60
+  },
+  "proactive_reply_ttl_sec": {
+    "description": "主动闲聊：从取材到回复的最长时间（秒，范围 5–180；过期不补发）",
+    "type": "int",
+    "default": 30
+  },
+  "quote_reply_enabled": {
+    "description": "回复：群友明确 @ 机器人时引用本条消息，无法引用时普通回复",
+    "type": "bool",
+    "default": true
+  },
+  "meme_enabled": {
+    "description": "表情：按当前话题选择本地或本群表情，首次看图后自动记录名称和用途",
+    "type": "bool",
+    "default": true
+  },
+  "meme_collect_enabled": {
+    "description": "表情：自动收藏本群明确标记为表情包的图片（需开启表情总开关）",
+    "type": "bool",
+    "default": true
+  },
+  "meme_cooldown_sec": {
+    "description": "表情：同一群两次配图的最短间隔（秒，范围 60–3600）",
+    "type": "int",
+    "default": 120
+  },
+  "memory_enabled": {
+    "description": "长期记忆：先按群/私聊、成员和时间收录，分层保存群记忆与个人记忆；关闭后仍可查看和忘记已有记忆",
+    "type": "bool",
+    "default": true
+  },
+  "memory_auto_extract": {
+    "description": "长期记忆：历史兼容项，自动模型整理已停用；无论此值如何，均须管理员通过 /整理记忆 开始 或本机维护入口手动开启一轮",
+    "type": "bool",
+    "default": false
   }
 }

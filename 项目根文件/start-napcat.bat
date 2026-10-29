@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 >nul
 title NapCat - QQ Bot
 
 setlocal
@@ -21,9 +22,9 @@ set NAPCAT_MAIN_PATH=%NAPCAT_MAIN_PATH:\=/%
 
 echo (async () =^> {await import("file:///%NAPCAT_MAIN_PATH%")})() > "%NAPCAT_LOAD_PATH%"
 
-rem 默认不预设账号：首次启动会出二维码，手机扫码登录即可。
-rem NapCat 会记住登录过的号，之后启动直接进，不必再扫。
-rem 想指定账号：start-napcat.bat -q 123456789
+rem No account preset by default: first run shows a QR code, scan it with the phone.
+rem NapCat remembers logged-in accounts; later runs log in directly, no scan needed.
+rem To preset an account: start-napcat.bat -q 123456789
 if "%~1"=="" (
     set "NAP_EXTRA="
     echo [info] no account preset - scan the QR code (first run only)

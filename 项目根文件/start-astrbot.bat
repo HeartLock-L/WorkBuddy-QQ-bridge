@@ -39,9 +39,9 @@ echo ============================================================
 echo.
 
 if defined WEBUI (
-    "%PY%" main.py --webui-dir "%WEBUI%" %*
+    "%PY%" "%ROOT%AstrBot\main.py" --webui-dir "%WEBUI%" %*
 ) else (
-    "%PY%" main.py %*
+    "%PY%" "%ROOT%AstrBot\main.py" %*
 )
 
 echo.
