@@ -6,7 +6,30 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PLUGIN = ROOT / "AstrBot/data/plugins/workbuddy_bridge/main.py"
+def _plugin_main() -> Path:
+    """Locate the plugin in a deployment tree or a repository checkout."""
+    for candidate in (
+        ROOT / "AstrBot/data/plugins/workbuddy_bridge/main.py",
+        ROOT / "workbuddy_bridge/main.py",
+    ):
+        if candidate.is_file():
+            return candidate
+    raise FileNotFoundError(
+        "workbuddy_bridge/main.py not found; deploy the plugin first"
+    )
+
+
+def _scripts_dir() -> Path:
+    """Locate the maintenance scripts that ship with the plugin."""
+    for base in PLUGIN.parents:
+        candidate = base / "scripts"
+        if (candidate / "diagnostic_evidence.py").is_file():
+            return candidate
+    return ROOT / "scripts"
+
+
+PLUGIN = _plugin_main()
+SCRIPTS = _scripts_dir()
 
 
 def load_module(path, name):

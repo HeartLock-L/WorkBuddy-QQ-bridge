@@ -11,10 +11,9 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-MODULE_PATH = (
-    Path(__file__).resolve().parents[1]
-    / "AstrBot/data/plugins/workbuddy_bridge/request_queue.py"
-)
+from bridge_test_support import PLUGIN
+
+MODULE_PATH = PLUGIN.with_name("request_queue.py")
 SPEC = importlib.util.spec_from_file_location("request_queue_under_test", MODULE_PATH)
 QUEUE = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = QUEUE

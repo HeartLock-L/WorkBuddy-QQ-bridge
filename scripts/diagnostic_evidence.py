@@ -279,10 +279,19 @@ def read_runtime_status(path: Path) -> dict:
     return data
 
 
-SOURCE_INVENTORY = (
-    Path(__file__).resolve().parents[1]
-    / "AstrBot/data/plugins/workbuddy_bridge/source_files.py"
-)
+def _inventory_path() -> Path:
+    """Locate source_files.py in a deployment tree or a repository checkout."""
+    root = Path(__file__).resolve().parents[1]
+    for candidate in (
+        root / "AstrBot/data/plugins/workbuddy_bridge/source_files.py",
+        root / "workbuddy_bridge/source_files.py",
+    ):
+        if candidate.is_file():
+            return candidate
+    return root / "AstrBot/data/plugins/workbuddy_bridge/source_files.py"
+
+
+SOURCE_INVENTORY = _inventory_path()
 
 
 def _source_inventory():

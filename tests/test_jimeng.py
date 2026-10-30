@@ -12,10 +12,9 @@ from dataclasses import replace
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-MODULE_PATH = (
-    Path(__file__).resolve().parents[1]
-    / "AstrBot/data/plugins/workbuddy_bridge/jimeng.py"
-)
+from bridge_test_support import PLUGIN
+
+MODULE_PATH = PLUGIN.with_name("jimeng.py")
 SPEC = importlib.util.spec_from_file_location("jimeng_under_test", MODULE_PATH)
 JIMENG = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = JIMENG

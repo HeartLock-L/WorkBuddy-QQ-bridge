@@ -8,12 +8,18 @@ from selfcheck import chat, images, maintenance, memory, messages, policy, text
 from selfcheck.support import CheckResults, load_plugin
 
 HERE = Path(__file__).resolve().parents[1]
-PLUGIN = Path(
-    os.environ.get(
-        "QQ_BOT_PLUGIN_FILE",
-        str(HERE / "AstrBot/data/plugins/workbuddy_bridge/main.py"),
-    )
-)
+def _default_plugin_file() -> Path:
+    """Prefer the deployed AstrBot tree, then the repository checkout."""
+    for candidate in (
+        HERE / "AstrBot/data/plugins/workbuddy_bridge/main.py",
+        HERE / "workbuddy_bridge/main.py",
+    ):
+        if candidate.is_file():
+            return candidate
+    return HERE / "AstrBot/data/plugins/workbuddy_bridge/main.py"
+
+
+PLUGIN = Path(os.environ.get("QQ_BOT_PLUGIN_FILE") or _default_plugin_file())
 
 
 def main() -> int:

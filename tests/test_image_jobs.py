@@ -10,10 +10,9 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-MODULE_PATH = (
-    Path(__file__).resolve().parents[1]
-    / "AstrBot/data/plugins/workbuddy_bridge/image_jobs.py"
-)
+from bridge_test_support import PLUGIN
+
+MODULE_PATH = PLUGIN.with_name("image_jobs.py")
 SPEC = importlib.util.spec_from_file_location("image_jobs_under_test", MODULE_PATH)
 IMAGE_JOBS = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(IMAGE_JOBS)

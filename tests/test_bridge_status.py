@@ -15,7 +15,7 @@ import uuid
 from pathlib import Path
 from unittest.mock import AsyncMock, Mock, patch
 
-from bridge_test_support import PLUGIN, load_definitions, load_module
+from bridge_test_support import PLUGIN, SCRIPTS, load_definitions, load_module
 
 
 def load_status_code(root):
@@ -353,7 +353,7 @@ class BridgeStatusFileTests(unittest.TestCase):
     def test_generated_heartbeat_is_accepted_by_the_diagnostic_reader(self):
         source = self.root / "main.py"
         source.write_text("VALUE = 1\n", encoding="utf-8")
-        evidence_path = PLUGIN.parents[4] / "scripts/diagnostic_evidence.py"
+        evidence_path = SCRIPTS / "diagnostic_evidence.py"
         name = "bridge_status_contract_evidence"
         spec = importlib.util.spec_from_file_location(name, evidence_path)
         evidence = importlib.util.module_from_spec(spec)
